@@ -7,5 +7,6 @@ target 'Share on Social' do
 
   # Pods for Share on Social
   pod 'TikTokOpenSDK', '~> 4.0.1'
+  pod 'QBImagePickerController'
 
 end

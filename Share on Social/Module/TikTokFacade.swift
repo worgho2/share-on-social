@@ -52,48 +52,70 @@ import Photos
 
 class TikTokFacade: NSObject {
     static let instance = TikTokFacade()
+    private let request = TikTokOpenSDKShareRequest()
     
     private override init() {
         super.init()
-        self.setup()
-    }
-    
-    private func setup() {
         TikTokOpenSDKApplicationDelegate.sharedInstance().logDelegate = self
     }
     
-    func shareImages(_ images: [UIImage], completion: @escaping (TikTokOpenSDKShareRespState, String?) -> ()) {
-        let datas = images.map { $0.pngData()! } //tratar force unwrapping
+    //MARK: - Image Sharing
+    
+    func shareImages(images: [UIImage], completion: @escaping (TikTokOpenSDKShareRespState) -> ()) {
+        let datas = images.map({ $0.pngData() }).compactMap({ $0 })
         var identifiers: [String] = []
         
         PHPhotoLibrary.shared().performChanges {
-            for data in datas {
-                let request = PHAssetCreationRequest.forAsset()
-                request.addResource(with: .photo, data: data, options: nil)
-                identifiers.append(request.placeholderForCreatedAsset!.localIdentifier)
+            datas.forEach { (data) in
+                let assetRequest = PHAssetCreationRequest.forAsset()
+                assetRequest.addResource(with: .photo, data: data, options: nil)
+                guard let id = assetRequest.placeholderForCreatedAsset?.localIdentifier else { return }
+                identifiers.append(id)
             }
-        } completionHandler: { (success, error) in
-            DispatchQueue.main.async {
-                
-                let request = TikTokOpenSDKShareRequest()
-                request.mediaType = .image
-                request.state = UUID().uuidString
-                request.localIdentifiers = identifiers
-
-                request.send { (response) in
-                    completion(response.shareState, response.state)
+        } completionHandler: { [weak self] (success, error) in
+            if let error = error {
+                self?.onLog("Error saving images to library [\(error.localizedDescription)]")
+                return
+            }
+            
+            if success {
+                DispatchQueue.main.async { [weak self] in
+                    self?.request.mediaType = .image
+                    self?.request.localIdentifiers = identifiers
+                    self?.request.send { (response) in
+                        completion(response.shareState)
+                        return
+                    }
                 }
+            } else {
+                self?.onLog("Unknown Error")
             }
         }
-        
-        
     }
     
-
+    func shareImages(assets: [PHAsset], completion: @escaping (TikTokOpenSDKShareRespState) -> ()) {
+        DispatchQueue.main.async { [weak self] in
+            self?.request.mediaType = .image
+            self?.request.localIdentifiers = assets.map { $0.localIdentifier }
+            self?.request.send { (response) in
+                completion(response.shareState)
+                return
+            }
+        }
+    }
     
-//    func shareVideos(_ videos: , completion: @escaping (TikTokOpenSDKShareRespState, String?) -> ()) {
-//        //TODO
-//    }
+    //MARK: - Video Sharing
+    
+    func shareVideos(assets: [PHAsset], completion: @escaping (TikTokOpenSDKShareRespState) -> ()) {
+        DispatchQueue.main.async { [weak self] in
+            self?.request.mediaType = .video
+            self?.request.localIdentifiers = assets.map { $0.localIdentifier }
+            self?.request.send { (response) in
+                completion(response.shareState)
+                return
+            }
+        }
+    }
 }
 
 extension TikTokFacade: TikTokOpenSDKLogDelegate {

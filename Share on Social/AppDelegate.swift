@@ -11,7 +11,7 @@ import Photos
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let permission = PHPhotoLibrary.authorizationStatus()
@@ -24,9 +24,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        if(TikTokOpenSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: (options[.sourceApplication] as! String), annotation: options[.annotation]!)) {
+            return true
+        }
+        return false
+    }
+    
 
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         if(TikTokOpenSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)) {
+            return true
+        }
+        return false
+    }
+    
+    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+        if(TikTokOpenSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: nil, annotation: AnyClass.self)) {
             return true
         }
         return false

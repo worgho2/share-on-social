@@ -1,16 +1,20 @@
 PODS:
+  - QBImagePickerController (3.4.0)
   - TikTokOpenSDK (4.0.1)
 
 DEPENDENCIES:
+  - QBImagePickerController
   - TikTokOpenSDK (~> 4.0.1)
 
 SPEC REPOS:
   trunk:
+    - QBImagePickerController
     - TikTokOpenSDK
 
 SPEC CHECKSUMS:
+  QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   TikTokOpenSDK: 24a702702a64b5652f2a0bcf4ad1b11d08c6eb1b
 
-PODFILE CHECKSUM: 6d30bc81c2e0d57e39d03c975396a2c7f3760e35
+PODFILE CHECKSUM: 68d4073741dcf4e774995830d80d88103508745f
 
 COCOAPODS: 1.9.3

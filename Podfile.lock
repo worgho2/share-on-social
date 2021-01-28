@@ -1,0 +1,16 @@
+PODS:
+  - TikTokOpenSDK (4.0.1)
+
+DEPENDENCIES:
+  - TikTokOpenSDK (~> 4.0.1)
+
+SPEC REPOS:
+  trunk:
+    - TikTokOpenSDK
+
+SPEC CHECKSUMS:
+  TikTokOpenSDK: 24a702702a64b5652f2a0bcf4ad1b11d08c6eb1b
+
+PODFILE CHECKSUM: 6d30bc81c2e0d57e39d03c975396a2c7f3760e35
+
+COCOAPODS: 1.9.3

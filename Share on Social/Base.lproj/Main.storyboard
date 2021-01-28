@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yQW-Wk-uwQ">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Share to TikTok-->
+        <scene sceneID="a9w-Sf-LDD">
+            <objects>
+                <viewController id="QSI-Pd-fj6" customClass="ViewController" customModule="Share_on_Social" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7N3-hJ-iec">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XSP-ed-Gkg">
+                                <rect key="frame" x="62" y="330" width="290" height="290"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cluster Test Share" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZW-tD-dda">
+                                        <rect key="frame" x="75.5" y="135" width="139.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.77130936126261185" blue="0.51929523029927238" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XSP-ed-Gkg" secondAttribute="height" multiplier="1:1" id="72Z-r4-5nI"/>
+                                    <constraint firstItem="MZW-tD-dda" firstAttribute="centerX" secondItem="XSP-ed-Gkg" secondAttribute="centerX" id="K8Z-IR-rtp"/>
+                                    <constraint firstItem="MZW-tD-dda" firstAttribute="centerY" secondItem="XSP-ed-Gkg" secondAttribute="centerY" id="g5n-0G-Ynx"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="28M-N8-UXd">
+                                <rect key="frame" x="87" y="155" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Lo9-Uw-c8S"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XSP-ed-Gkg" firstAttribute="centerX" secondItem="Lo9-Uw-c8S" secondAttribute="centerX" id="7d0-ll-E8B"/>
+                            <constraint firstItem="XSP-ed-Gkg" firstAttribute="width" secondItem="7N3-hJ-iec" secondAttribute="width" multiplier="0.7" id="Xpg-eq-elB"/>
+                            <constraint firstItem="XSP-ed-Gkg" firstAttribute="centerY" secondItem="Lo9-Uw-c8S" secondAttribute="centerY" id="ifh-ik-4eW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Share to TikTok" id="pzh-zv-Ai8">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="FZs-Bu-ljv">
+                            <connections>
+                                <action selector="onShareButton:" destination="QSI-Pd-fj6" id="24p-km-Wsc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="shareButton" destination="FZs-Bu-ljv" id="Ugm-9I-mO3"/>
+                        <outlet property="viewToShare" destination="XSP-ed-Gkg" id="1rS-hq-dqi"/>
+                        <outlet property="viewToShare2" destination="28M-N8-UXd" id="p4c-L0-Jog"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J3s-sr-rZl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="989.85507246376824" y="-13.392857142857142"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="LrZ-M4-GeD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yQW-Wk-uwQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="n8Y-ye-rPs">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="QSI-Pd-fj6" kind="relationship" relationship="rootViewController" id="Y9G-RE-T5x"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b37-P3-pZR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="79.710144927536234" y="-13.392857142857142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
